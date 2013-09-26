@@ -1,0 +1,6 @@
+"AddonInfo"
+{
+        "name"              "Arpg"
+        "version"           "001"
+        "override"          "1"
+}
