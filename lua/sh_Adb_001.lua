@@ -9,6 +9,9 @@ function PrepareDirectory( path )
 end
  
 function PrepareDirectories( )
+		if file.Read( "arpg/db/id/direxist.txt" ) != nil then
+			return true
+		end
 		if file.Read( "arpg/direxist.txt" ) == nil then
 				PrepareDirectory( "arpg" )
 				PrepareDirectory( "arpg/db" )
@@ -16,7 +19,7 @@ function PrepareDirectories( )
 		elseif file.Read( "arpg/db/direxist.txt" ) == nil then
 				PrepareDirectory( "arpg/db" )
 				PrepareDirectory( "arpg/db/id" )
-		elseif file.Read( "arpg/db/id/direxist.txt" ) == nil then
+		else
 				PrepareDirectory( "arpg/db/id" )
 		end
 		return true
@@ -79,14 +82,9 @@ function ServerInit( )
 	timer.Simple( 1, function( )
 		MsgC( Color( 75, 100, 225 ), "[ Adb ] Filesystem check in progress...\n" )
 		timer.Simple( 2, function( )
-			local FileC = file.Read( "arpg/db/id/direxist.txt" )
-			if FileC == "x" then
-				MsgC( Color( 75, 100, 225 ), "[ Adb ] Filesystem is correctly installed.\n" )
-			elseif FileC == nil then
-				MsgC( Color( 75, 100, 225 ), "[ Adb ] Filesystem is incorrectly installed. Retrying...\n" )
-				PrepareDirectories( )
-				DeleteCheckFiles( )
-			end
+			MsgC( Color(75, 100, 225), "[ Adb ] Checking folder structure..." )
+			PrepareDirectories()
+			MsgC( Color(75, 100, 225), "[ Adb ] Everything seems to be in order!" )
 		end )
 	end )
 
