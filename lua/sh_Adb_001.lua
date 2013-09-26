@@ -93,11 +93,6 @@ end
 
 
 
-
-
--- Well fuck it, here's your change. F u conflict
-
-
 if SERVER then
 	
 	ServerInit( )
