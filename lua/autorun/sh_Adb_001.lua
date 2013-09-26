@@ -90,7 +90,6 @@ function ServerInit( )
 
 end
 
-
 if SERVER then
 	
 	ServerInit( )
