@@ -3,23 +3,23 @@ Adb = { }
 
 
 function PrepareDirectory( path )
-   MsgC( Color( 75, 100, 225), "[ Adb ] Directory '"..path.."' does not exist! Creating it for you..." )
-   file.CreateDir( path )
-   file.Write( path.."/direxist.txt" )
+	MsgC( Color( 75, 100, 225), "[ Adb ] Directory '"..path.."' does not exist! Creating it for you..." )
+	file.CreateDir( path )
+	file.Write( path.."/direxist.txt" )
 end
  
 function PrepareDirectories( )
-        if file.Read( "arpg/direxist.txt" ) == nil then
-               PrepareDirectory( "arpg" )
-               PrepareDirectory( "arpg/db" )
-               PrepareDirectory( "arpg/db/id" )
-        elseif file.Read( "arpg/db/direxist.txt" ) == nil then
-               PrepareDirectory( "arpg/db" )
-               PrepareDirectory( "arpg/db/id" )
-        elseif file.Read( "arpg/db/id/direxist.txt" ) == nil then
-               PrepareDirectory( "arpg/db/id" )
-        end
-        return true
+		if file.Read( "arpg/direxist.txt" ) == nil then
+				PrepareDirectory( "arpg" )
+				PrepareDirectory( "arpg/db" )
+				PrepareDirectory( "arpg/db/id" )
+		elseif file.Read( "arpg/db/direxist.txt" ) == nil then
+				PrepareDirectory( "arpg/db" )
+				PrepareDirectory( "arpg/db/id" )
+		elseif file.Read( "arpg/db/id/direxist.txt" ) == nil then
+				PrepareDirectory( "arpg/db/id" )
+		end
+		return true
 end
 	
 function SaveID( IDToSave )
