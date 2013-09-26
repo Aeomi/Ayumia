@@ -7,19 +7,19 @@ function PrepareDirectory( path )
 	file.CreateDir( path )
 	file.Write( path.."/direxist.txt" )
 end
- 
+
 function PrepareDirectories( )
-		if file.Read( "arpg/direxist.txt" ) == nil then
-				PrepareDirectory( "arpg" )
-				PrepareDirectory( "arpg/db" )
-				PrepareDirectory( "arpg/db/id" )
-		elseif file.Read( "arpg/db/direxist.txt" ) == nil then
-				PrepareDirectory( "arpg/db" )
-				PrepareDirectory( "arpg/db/id" )
-		elseif file.Read( "arpg/db/id/direxist.txt" ) == nil then
-				PrepareDirectory( "arpg/db/id" )
-		end
-		return true
+	if file.Read( "arpg/direxist.txt" ) == nil then
+		PrepareDirectory( "arpg" )
+		PrepareDirectory( "arpg/db" )
+		PrepareDirectory( "arpg/db/id" )
+	elseif file.Read( "arpg/db/direxist.txt" ) == nil then
+		PrepareDirectory( "arpg/db" )
+		PrepareDirectory( "arpg/db/id" )
+	elseif file.Read( "arpg/db/id/direxist.txt" ) == nil then
+		PrepareDirectory( "arpg/db/id" )
+	end
+	return true
 end
 	
 function SaveID( IDToSave )
@@ -39,7 +39,7 @@ function SaveID( IDToSave )
 		end
 	end
 end
-
+ 
 
 function TblToString( IDToConv )
 	local Str = ""
@@ -97,7 +97,7 @@ end
 
 
 
-
+-- Well fuck it, here's your change. F u conflict
 
 
 if SERVER then
@@ -125,7 +125,7 @@ hook.Add( "PlayerSpawn", "PlySetUp", function( ply )
 				SaveID( ID )
 			
 		end
-		
+
 		
 		
 	end
