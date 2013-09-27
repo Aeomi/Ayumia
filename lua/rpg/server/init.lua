@@ -46,15 +46,13 @@ hook.Add( "PlayerSpawn", "PlySetUp", function( ply )
 				local SetUpDef = { name="n/a", level=1 cash=100 } 
 				Adb[ ID ] = SetUpDef
 				SaveID( ID )
-<<<<<<< HEAD
 			end
 		end	
-=======
 			else
 				local FindIDInFile = FileIDRead( ID )
 				Adb[ ID ] = FindIDInFile
 			end
 		end
->>>>>>> 12e63cad8537ad5977a27e72eed24d290a209627
+
 	end
 end )
