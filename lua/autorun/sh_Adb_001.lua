@@ -90,12 +90,15 @@ function ServerInit( )
 
 end
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD:lua/sh_Adb_001.lua
 
 
 =======
 >>>>>>> pr/5:lua/autorun/sh_Adb_001.lua
+=======
+>>>>>>> 12e63cad8537ad5977a27e72eed24d290a209627
 if SERVER then
 	
 	ServerInit( )
