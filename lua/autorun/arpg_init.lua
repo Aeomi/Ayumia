@@ -1,7 +1,7 @@
 if SERVER then
 	-- Clientside files --
-	AddCSLuaFile("autorun/arpg_init.lua")
-	AddCSLuaFile("rpg/client/cl_init.lua")
+	AddCSLuaFile( "autorun/arpg_init.lua" )
+	AddCSLuaFile( "rpg/client/cl_init.lua" )
 end
 
 -- Shared includes
@@ -12,7 +12,7 @@ end
 
 if SERVER then
 	-- Server includes --
-	include("rpg/server/init.lua")
+	include( "rpg/server/init.lua" )
 	
-	timer.Simple( 2, ServerInit )
+	ServerInit( )
 end

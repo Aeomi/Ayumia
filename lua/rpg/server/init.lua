@@ -1,7 +1,7 @@
 Adb = { }
 
 function PrepareDirectory( path )
-	MsgC( Color( 75, 100, 225), "[ Adb ] Directory '"..path.."' does not exist! Creating it for you..." )
+	MsgC( Color( 75, 100, 225), "[ Adb ] Directory '"..path.."' does not exist! Creating it for you...\n" )
 	file.CreateDir( path )
 	file.Write( path.."/direxist.txt" )
 end
@@ -24,9 +24,10 @@ function PrepareDirectories( )
 end
 
 function ServerInit( )
-	MsgC( Color(75, 100, 225), "[ Adb ] Checking folder structure..." )
-	PrepareDirectories()
-	MsgC( Color(75, 100, 225), "[ Adb ] Everything seems to be in order!" )
+	MsgC( Color(75, 100, 225), "[ Adb ] Checking file system...\n" )
+	if PrepareDirectories( ) then
+		MsgC( Color(75, 100, 225), "[ Adb ] File system correctly installed.\n" )
+	end
 end
 
 hook.Add( "PlayerSpawn", "PlySetUp", function( ply )
@@ -44,7 +45,7 @@ hook.Add( "PlayerSpawn", "PlySetUp", function( ply )
 				local SetUpDef = { name="n/a", mny=100 } 
 				Adb[ ID ] = SetUpDef
 				SaveID( ID )
-			
+			end
 		end	
 	end
 end )
