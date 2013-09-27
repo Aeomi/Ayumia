@@ -13,6 +13,7 @@ end
 if SERVER then
 	-- Server includes --
 	include( "rpg/server/init.lua" )
+	include( "rpg/server/db.lua")
 	
 	ServerInit( )
 end

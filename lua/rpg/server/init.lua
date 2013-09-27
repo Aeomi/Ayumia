@@ -45,9 +45,15 @@ hook.Add( "PlayerSpawn", "PlySetUp", function( ply )
 				local SetUpDef = { name="n/a", lvl=1, cash=100 } 
 				Adb[ ID ] = SetUpDef
 				SaveID( ID )
-			-- else	 |!!|Replace dis with teh parser! :3
-				-- local FindIDInFile = FileIDRead( ID )
-				-- Adb[ ID ] = FindIDInFile
+			else
+				if ReadIDToAdb(ID) == false then
+					-- Version mismatch, corrupt file, or unknown error.
+					-- TODO: Delete old id file, build new one.
+					--       This will destroy the users old stats, so
+					--       When destroying, move the old ID information
+					--       to "arpg/db/id/<idhere>-old.txt"
+					--       so the admin or a version update tool can fix it.
+				end
 			end
 		end
 	end
