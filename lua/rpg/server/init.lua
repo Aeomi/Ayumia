@@ -38,21 +38,14 @@ hook.Add( "PlayerSpawn", "PlySetUp", function( ply )
 	elseif tonumber( SID ) != nil then
 		MsgC( Color( 75, 100, 225 ), "[ Adb ] Unregistered ID detected: nil(???) - ignoring\n" )
 	else
-	
 		local ID = string.sub( SID, 11, 18 )
 		if Adb[ ID ] == nil then
 			if file.Read( "arpg/db/id/".. ID ) == nil then
 				MsgC( Color( 75, 100, 225 ), "[ Adb ] Unregistered ID detected: Ply - registering\n" )
-				local SetUpDef = { name="n/a", level=1 cash=100 } 
+				local SetUpDef = { name="n/a", mny=100 } 
 				Adb[ ID ] = SetUpDef
 				SaveID( ID )
 			end
 		end	
-			else
-				local FindIDInFile = FileIDRead( ID )
-				Adb[ ID ] = FindIDInFile
-			end
-		end
-
 	end
 end )

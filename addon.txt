@@ -1,6 +1,6 @@
 "AddonInfo"
 {
         "name"              "Arpg"
-        "version"           "002 - Trying to fix the crap and preparing files for parser"
+        "version"           "003 - Trying to fix the crap and preparing files for parser"
         "override"          "1"
 }
