@@ -14,7 +14,7 @@ function WriteTableToID( ID )
 		end
 	end
 	-- Compile the table into lua.
-	local ResultStr = "ADB[ "..ID.." ] = {\n"
+	local ResultStr = "Adb[ "..ID.." ] = {\n"
 	for k, v in pairs( IDTable ) do
 		if type( v ) == "number" then
 			ResultStr = ResultStr..k.."="..v..",\n"
@@ -23,7 +23,7 @@ function WriteTableToID( ID )
 		end
 	end
 	-- Check if we actually did anything..
-	local TestStr = string.sub( ResultStr, #ResultrStr-2 )
+	local TestStr = string.sub( ResultStr, #ResultStr-1 )
 	if TestStr != ",\n" then
 		return false
 	end
@@ -35,9 +35,6 @@ function WriteTableToID( ID )
 end
 
 function ReadIDToAdb( ID )
-	if type( ID ) == "string" then
-		ID = tonumber( ID )
-	end
 	IDContents = file.Read( "arpg/db/id/"..ID..".txt" )
 	if IDContents == nil or string.sub( IDContents, 1, 3 ) != "Adb" then
 		return false
