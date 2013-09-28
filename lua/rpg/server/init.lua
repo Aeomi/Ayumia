@@ -46,7 +46,7 @@ hook.Add( "PlayerSpawn", "PlySetUp", function( ply )
 				Adb[ ID ] = SetUpDef
 				SaveID( ID )
 			else
-				if ReadIDToAdb(ID) == false then
+				if ReadIDToAdb( ID ) == false then
 					-- Version mismatch, corrupt file, or unknown error.
 					-- TODO: Delete old id file, build new one.
 					--       This will destroy the users old stats, so
