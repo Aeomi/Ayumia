@@ -38,16 +38,25 @@ hook.Add( "PlayerSpawn", "PlySetUp", function( ply )
 	elseif tonumber( SID ) != nil then
 		MsgC( Color( 75, 100, 225 ), "[ Adb ] Unregistered ID detected: nil(???) - ignoring\n" )
 	else
-		local ID = string.sub( SID, 11, 18 )
+		local ID = tonumber( string.sub( SID, 11, 18 ) )
 		if Adb[ ID ] == nil then
-			if file.Read( "arpg/db/id/".. ID ) == nil then
+			if file.Read( "arpg/db/id/".. ID ..".txt" ) == nil then
 				MsgC( Color( 75, 100, 225 ), "[ Adb ] Unregistered ID detected: Ply - registering\n" )
-				local SetUpDef = { name="n/a", lvl=1, cash=100 } 
-				Adb[ ID ] = SetUpDef
-				SaveID( ID )
-			-- else	 |!!|Replace dis with teh parser! :3
-				-- local FindIDInFile = FileIDRead( ID )
-				-- Adb[ ID ] = FindIDInFile
+				Adb[ ID ] = { name = false }
+				WriteTableToID( ID )
+			else
+				if ReadIDToAdb( ID ) == false then
+					-- Version mismatch, corrupt file, or unknown error.
+					-- TODO: Delete old id file, build new one.
+					--       This will destroy the users old stats, so
+					--       When destroying, move the old ID information
+					--       to "arpg/db/id/<idhere>-old.txt"
+					--       so the admin or a version update tool can fix it.
+				end
+				
+				if Adb[ ID ].name == false then
+					-- New character needs creating before anything else.
+				end
 			end
 		end
 	end
