@@ -1,7 +1,7 @@
 Adb = { }
 
 function PrepareDirectory( path )
-	MsgC( Color( 75, 100, 225), "[ Adb ] Directory '"..path.."' does not exist! Creating it for you...\n" )
+	MsgC( Color( 75, 100, 225), "[ Adb ] Directory '"..path.."' does not exist, creating it for you...\n" )
 	file.CreateDir( path )
 	file.Write( path.."/direxist.txt" )
 end
@@ -30,15 +30,15 @@ function ServerInit( )
 	end
 end
 
-hook.Add( "PlayerSpawn", "PlySetUp", function( ply )
-	local SID = ply:SteamID( )
+hook.Add( "PlayerInitialSpawn", "IDInitJoinHandling", function( ply )
+	local S_ID = ply:SteamID( )
 	
-	if SID == "BOT" then
+	if S_ID == "BOT" then
 		MsgC( Color( 75, 100, 225 ), "[ Adb ] Unregistered ID detected: Bot - ignoring\n" )
-	elseif tonumber( SID ) != nil then
+	elseif tonumber( S_ID ) != nil then
 		MsgC( Color( 75, 100, 225 ), "[ Adb ] Unregistered ID detected: nil(???) - ignoring\n" )
 	else
-		local ID = tonumber( string.sub( SID, 11, 18 ) )
+		local ID = tonumber( string.sub( S_ID, 11, 18 ) )
 		if Adb[ ID ] == nil then
 			if file.Read( "arpg/db/id/".. ID ..".txt" ) == nil then
 				MsgC( Color( 75, 100, 225 ), "[ Adb ] Unregistered ID detected: Ply - registering\n" )
@@ -55,9 +55,18 @@ hook.Add( "PlayerSpawn", "PlySetUp", function( ply )
 				end
 				
 				if Adb[ ID ].name == false then
-					-- New character needs creating before anything else.
+					-- New character needs creating before anything else. -- Deprecated TODO
 				end
 			end
 		end
 	end
 end )
+
+-- TODO: A Single character shall be allowed per player
+--		 Begin work on "arpg/db/id/<ply-id>_old.txt".
+--		 Begin work on tool to find "old" IDs and patch them accordingly.
+--		 At Version 5r: Begin work on clientside code.
+--		 				Begin work on Name-"popup" if name is false ( See Line 57 )
+--						Create basic derma panel for the Main Menu - Menu is called with F2 key ( Up for discussion )
+
+
