@@ -2,6 +2,8 @@ Arpg
 ====
 
 
-Arpg is a number of projects under a single name. 
+ARpg is an addon for Garry's Mod with multiple compatible 'plugins' or 'components' available for install.                
+The components can range from Rpg styled plugins, to Shiny HUD additions, to inventory systems & so on.
 
-The intention is to create a game with many different attributes. 
+
+Due to the endless possibilities of having such a system; Arpg is always a Work in Progress.
