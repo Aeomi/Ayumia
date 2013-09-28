@@ -9,7 +9,7 @@ function WriteTableToID( ID )
 	end
 	-- Check for irregular (and possibly malicious) table values.
 	for k, v in pairs( IDTable ) do
-		if type( v ) == "string" and v:match( "[%a%d ]+" ) == nil then
+		if type( v ) == "string" and v:match( "^[%a%d ]+$" ) == nil then
 			return false
 		end
 	end
