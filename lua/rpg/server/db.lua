@@ -19,7 +19,6 @@ function WriteTableToID(ID)
 			ResultStr = ResultStr..k.."=".."\""..v.."\""..",\n"
 		end
 	end
-	-- End the function
 	-- Check if we actually did anything..
 	local TestStr = string.sub(ResultStr, -2)
 	if TestStr ~= ",\n" then
@@ -28,13 +27,13 @@ function WriteTableToID(ID)
 	-- Clean off that bothersome ",\n" and finish up.
 	ResultStr = string.sub(ResultStr, 1, #ResultStr-2)
 	ResultStr = ResultStr.."\n}"
-	file.Write("arpg/db/id/"..ID, ResultStr)
+	file.Write("arpg/db/id/"..ID..".txt", ResultStr)
 	return true
 end
 
 function ReadIDToAdb(ID)
 	IDContents = file.Read("arpg/db/id/"..ID..".txt")
-	if IDContents == nil or string.sub(IDContents, 1, 3) ~= Adb then
+	if IDContents == nil or string.sub(IDContents, 1, 3) ~= "Adb" then
 		return false
 	end
 	RunString(IDContents)
