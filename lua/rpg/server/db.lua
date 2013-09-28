@@ -20,6 +20,8 @@ function WriteTableToID( ID )
 			ResultStr = ResultStr..k.."="..v..",\n"
 		elseif type( v ) == "string" then
 			ResultStr = ResultStr..k.."=".."\""..v.."\""..",\n"
+		elseif v == nil then
+			ResultStr = ResultrStr..k.."=nil,\n"
 		end
 	end
 	-- Check if we actually did anything..
