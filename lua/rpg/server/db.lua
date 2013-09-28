@@ -1,4 +1,7 @@
 function WriteTableToID( ID )
+	if type( ID ) == "string" then
+		ID = tonumber(ID)
+	end
 	IDTable = Adb[ ID ]
 	-- Incorrect ID or potentially malicious table names are a nono.
 	if IDTable == nil then
@@ -32,6 +35,9 @@ function WriteTableToID( ID )
 end
 
 function ReadIDToAdb( ID )
+	if type( ID ) == "string" then
+		ID = tonumber( ID )
+	end
 	IDContents = file.Read( "arpg/db/id/"..ID..".txt" )
 	if IDContents == nil or string.sub( IDContents, 1, 3 ) != "Adb" then
 		return false
