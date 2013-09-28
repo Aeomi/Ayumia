@@ -40,9 +40,9 @@ hook.Add( "PlayerSpawn", "PlySetUp", function( ply )
 	else
 		local ID = tonumber( string.sub( SID, 11, 18 ) )
 		if Adb[ ID ] == nil then
-			if file.Read( "arpg/db/id/".. ID ) == nil then
+			if file.Read( "arpg/db/id/".. ID ..".txt" ) == nil then
 				MsgC( Color( 75, 100, 225 ), "[ Adb ] Unregistered ID detected: Ply - registering\n" )
-				Adb[ ID ] = { name = nil }
+				Adb[ ID ] = { name = false }
 				WriteTableToID( ID )
 			else
 				if ReadIDToAdb( ID ) == false then
@@ -54,7 +54,7 @@ hook.Add( "PlayerSpawn", "PlySetUp", function( ply )
 					--       so the admin or a version update tool can fix it.
 				end
 				
-				if Adb[ ID ].name == nil then
+				if Adb[ ID ].name == false then
 					-- New character needs creating before anything else.
 				end
 			end

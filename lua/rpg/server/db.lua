@@ -19,9 +19,9 @@ function WriteTableToID( ID )
 		if type( v ) == "number" then
 			ResultStr = ResultStr..k.."="..v..",\n"
 		elseif type( v ) == "string" then
-			ResultStr = ResultStr..k.."=".."\""..v.."\""..",\n"
-		elseif v == nil then
-			ResultStr = ResultrStr..k.."=nil,\n"
+			ResultStr = ResultStr..k.."=".."\""..v.."\",\n"
+		elseif type( v ) == "boolean" then
+			ResultStr = ResultStr..k.."="..tostring(v)..",\n"
 		end
 	end
 	-- Check if we actually did anything..
