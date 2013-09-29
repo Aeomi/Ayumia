@@ -21,7 +21,10 @@ concommand.Add("ayu_rpg_requestname", function()
 		NameField:SetEnterAllowed( true )
 		NameField.OnEnter = function()
 			if NameField:GetValue():match("^[%a ]+$") != nil then
-				Msg( "Your name would be set to "..NameField:GetValue().." right about now." )
+				Msg( "Your name would be set to "..NameField:GetValue( ).." right about now." )
+				net.Start( "clientName" )
+				net.WriteString( NameField:GetValue( ) )
+				net.SendToServer( )
 				NameDerma:SetVisible( false )
 			else
 				NameField:SetText( "Invalid name! Try again!" )
