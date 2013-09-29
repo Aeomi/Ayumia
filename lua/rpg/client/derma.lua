@@ -27,7 +27,7 @@ NameField.OnEnter = function()
 			end
 		end)
 	end
-end)
+end
 
 concommand.Add("ayu_rpg_requestname", function()
 	-- TODO: Check if name hasn't already been set with the server.
