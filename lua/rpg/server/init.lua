@@ -56,6 +56,7 @@ hook.Add( "PlayerInitialSpawn", "IDInitJoinHandling", function( ply )
 				
 				if Adb[ ID ].name == false then
 					-- New character needs creating before anything else. -- Deprecated TODO
+					timer.Simple( 4, function( ) ply:ConCommand( "ayu_rpg_requestname" ) end )
 				end
 			end
 		end
