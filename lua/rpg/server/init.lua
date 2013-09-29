@@ -7,6 +7,10 @@ net.Receive( "clientName", function( len, ply )
 	print( "[ Adb ] Received new name from " .. ply:Nick( ) )
 	local CurrentSteamID = ply:SteamID( )
 	local NewName = net.ReadString()
+	if NewName:match( "^[%a%d ]+$" ) == nil then
+		print("[ Adb ] Potentially malicious name, dropping it!")
+		ply:ChatPrint( "I do wish you wouldn't do that!" )
+	end
 	if CurrentSteamID == "BOT" then
 		print( "[ Adb ] That's a bot! Ignoring." )
 	else
