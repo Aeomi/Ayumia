@@ -1,22 +1,32 @@
-if SERVER then
-	-- Clientside files --
-	AddCSLuaFile( "autorun/arpg_init.lua" )
+if SERVER then 
+	-- Clientside Files >
+	AddCSLuaFile( )
 	AddCSLuaFile( "rpg/client/cl_init.lua" )
 	AddCSLuaFile( "rpg/client/derma.lua" )
 end
 
--- Shared includes
-
-if CLIENT then
-	-- Client specific includes
+if CLIENT then 
+	-- Clientside Includes >
 	include( "rpg/client/cl_init.lua" )
 	include( "rpg/client/derma.lua" )
 end
 
-if SERVER then
-	-- Server includes --
+if SERVER then -- Serverside Includes >
 	include( "rpg/server/init.lua" )
 	include( "rpg/server/db.lua" )
-	
-	ServerInit( )
+end
+
+if !SERVER & !CLIENT then 
+	-- Shared includes >
+end
+
+if CLIENT then 
+	-- Clientside Init Calls >
+	VerCheckCL( )
+end
+
+if SERVER then 
+	-- Serverside Init Calls >
+	VerCheckCL( )
+	InitSV( )
 end
