@@ -60,7 +60,7 @@ function PrepareDirectories( )
 		PrepareDirectory( "ayumia/rpg" )
 		PrepareDirectory( "ayumia/rpg/db" )
 		PrepareDirectory( "ayumia/rpg/db/id" )
-	elseif file.Read( "ayumi/rpg/db/direxist.txt" ) == nil then
+	elseif file.Read( "ayumia/rpg/db/direxist.txt" ) == nil then
 		PrepareDirectory( "ayumia/rpg/db" )
 		PrepareDirectory( "ayumia/rpg/db/id" )
 	else
