@@ -36,7 +36,7 @@ hook.Add( "PlayerInitialSpawn", "IDInitJoinHandling", function( ply )
 	if S_ID == "BOT" then
 		MsgC( Color( 75, 100, 225 ), "[ Adb ] Unregistered ID detected: Bot - ignoring\n" )
 	elseif tonumber( S_ID ) != nil then
-		MsgC( Color( 75, 100, 225 ), "[ Adb ] Unregistered ID detected: nil(???) - ignoring\n" )
+		MsgC( Color( 75, 100, 225 ), "[ Adb ] Unregistered ID detected: Irregular SteamID string - ignoring\n" )
 	else
 		local ID = tonumber( string.sub( S_ID, 11, 18 ) )
 		if Adb[ ID ] == nil then
@@ -56,6 +56,7 @@ hook.Add( "PlayerInitialSpawn", "IDInitJoinHandling", function( ply )
 				
 				if Adb[ ID ].name == false then
 					-- New character needs creating before anything else. -- Deprecated TODO
+					timer.Simple( 4, function( ) ply:ConCommand( "ayu_rpg_requestname" ) end )
 				end
 			end
 		end

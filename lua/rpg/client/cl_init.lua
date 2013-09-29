@@ -1,5 +1,3 @@
-
-
 -- TODO: Make a static Version updater that reads from; "addons/Arpg/ver.txt" 
 --		 Make a shiny version message :3
 
