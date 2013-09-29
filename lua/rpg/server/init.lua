@@ -53,6 +53,11 @@ function PrepareDirectories( )
 	end
 	if file.Read( "ayumia/direxist.txt" ) == nil then
 		PrepareDirectory( "ayumia" )
+		PrepareDirectory( "ayumia/rpg" )
+		PrepareDirectory( "ayumia/rpg/db" )
+		PrepareDirectory( "ayumia/rpg/db/id" )
+	elseif file.Read( "ayumia/rpg/direxist.txt" ) == nil then
+		PrepareDirectory( "ayumia/rpg" )
 		PrepareDirectory( "ayumia/rpg/db" )
 		PrepareDirectory( "ayumia/rpg/db/id" )
 	elseif file.Read( "ayumia/rpg/db/direxist.txt" ) == nil then
@@ -81,7 +86,7 @@ hook.Add( "PlayerInitialSpawn", "IDHandling", function( ply )
 	else
 		local ID = tonumber( string.sub( sID, 11, 18 ) )
 		if Adb[ ID ] == nil then
-			if file.Read( "ayumia/db/id/".. ID ..".txt" ) == nil then
+			if file.Read( "ayumia/rpg/db/id/".. ID ..".txt" ) == nil then
 				MsgC( Color( 75, 100, 225 ), "[ Adb ] Unregistered ID detected: Ply - registering\n" )
 				Adb[ ID ] = { name = false }
 				WriteTableToID( ID )
