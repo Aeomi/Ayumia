@@ -1,8 +1,8 @@
-Arpg
+Ayumia
 ====
 
 
-ARpg is an addon for Garry's Mod with multiple compatible 'plugins' or 'components' available for install.                
+Ayumia is an addon for Garry's Mod that supports & manages a multitude of compatible 'plugins' or 'components' available for install.                
 The components can range from Rpg styled plugins, to Shiny HUD additions, to inventory systems & so on.
 
 

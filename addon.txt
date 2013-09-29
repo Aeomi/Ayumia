@@ -1,6 +1,6 @@
 "AddonInfo"
 {
-        "name"              "Arpg"
-        "version"           "005 - Git down with it."
+        "name"              "Ayumia"
+        "version"           "1_5"
         "override"          "1"
 }
