@@ -16,7 +16,7 @@ if SERVER then -- Serverside Includes >
 	include( "rpg/server/db.lua" )
 end
 
-if !SERVER & !CLIENT then 
+if !SERVER and !CLIENT then 
 	-- Shared includes >
 end
 
@@ -27,6 +27,6 @@ end
 
 if SERVER then 
 	-- Serverside Init Calls >
-	VerCheckCL( )
+	VerCheckSV( )
 	InitSV( )
 end
