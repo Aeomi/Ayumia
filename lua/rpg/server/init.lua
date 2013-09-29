@@ -1,5 +1,36 @@
 Adb = { }
 
+-- Precache net-lib messages here.
+util.AddNetworkString("clientName")
+
+net.Receive( "clientName", function( len, ply )
+	print( "[ Adb ] Received new name from " .. ply:Nick( ) )
+	local CurrentSteamID = ply:SteamID( )
+	local NewName = net.ReadString()
+	if NewName:match( "^[%a%d ]+$" ) == nil then
+		print("[ Adb ] Potentially malicious name, dropping it!")
+		ply:ChatPrint( "I do wish you wouldn't do that!" )
+	end
+	if CurrentSteamID == "BOT" then
+		print( "[ Adb ] That's a bot! Ignoring." )
+	else
+		local NumID = tonumber( string.sub( CurrentSteamID, 11, 18 ) )
+		if Adb[ NumID ] == nil then
+			print( "[ Adb ] Unexpected error occured! aborting!" )
+			return
+		end
+		if Adb[ NumID ].name == false then
+			-- TODO: New character stuffs.
+			print( "[ Adb ] New character!" )
+			Adb[ NumID ].name = NewName
+			WriteTableToID( NumID )
+		else
+			-- TODO: Pre-existing character, name change.
+			print( "[ Adb ] Character wanted to change name!" )
+		end
+	end
+end)
+
 function PrepareDirectory( path )
 	MsgC( Color( 75, 100, 225), "[ Adb ] Directory '"..path.."' does not exist, creating it for you...\n" )
 	file.CreateDir( path )
@@ -57,6 +88,8 @@ hook.Add( "PlayerInitialSpawn", "IDInitJoinHandling", function( ply )
 				if Adb[ ID ].name == false then
 					-- New character needs creating before anything else. -- Deprecated TODO
 					timer.Simple( 4, function( ) ply:ConCommand( "ayu_rpg_requestname" ) end )
+				else
+					ply:ChatPrint( "Hello again, " .. Adb[ ID ].name .. "!" )
 				end
 			end
 		end
