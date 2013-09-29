@@ -1,0 +1,1 @@
+-- Global variables for all of Ayuamia go here;

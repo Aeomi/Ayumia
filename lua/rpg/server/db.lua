@@ -32,12 +32,12 @@ function WriteTableToID( ID )
 	-- Clean off that bothersome ",\n" and finish up.
 	ResultStr = string.sub( ResultStr, 1, #ResultStr-2 )
 	ResultStr = ResultStr .."\n}"
-	file.Write( "arpg/db/id/"..ID..".txt", ResultStr )
+	file.Write( "ayumia/rpg/db/id/"..ID..".txt", ResultStr )
 	return true
 end
 
 function ReadIDToAdb( ID )
-	IDContents = file.Read( "arpg/db/id/".. ID ..".txt" )
+	IDContents = file.Read( "ayumia/rpg/db/id/".. ID ..".txt" )
 	if IDContents == nil or string.sub( IDContents, 1, 3 ) != "Adb" then
 		return false
 	end
