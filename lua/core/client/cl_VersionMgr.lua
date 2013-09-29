@@ -1,6 +1,6 @@
 
 
-function CheckVerCL( )
+function VerCheckCL( )
 	local Path = "Ayumia/core/cl_ver.txt"
 	local FileR = Path:Read( )
 	

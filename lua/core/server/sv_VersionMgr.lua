@@ -1,7 +1,7 @@
 
 
-function CheckVerSV( )
-	local Path = "Ayumia/core/sv_ver.txt"
+function VerCheckSV( )
+	local Path = "ayumia/core/sv_ver.txt"
 	local FileR = Path:Read( )
 
 	if FileR == "" then
