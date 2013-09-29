@@ -2,11 +2,10 @@ Ayu = { }
 Ayu.MyRev = 0
 Ayu.GitRev = 0
 
-
+-- TODO: Find a better solution to delay UpdateCheck Func! D':
+--		 
 function UpdateCheck( )
-print( "1: Pass" )
-	timer.Create( "Qwfqwf", 12.5, 1, function( )
-print( "2: Pass" )
+	timer.Simple( 1, function( ) 
 		http.Fetch( "https://github.com/Aeomi/Ayumia", function( contents, size )
 			local MyRev = file.Read( "Ayumia/version.txt", true )
 			local Rev = tonumber( string.match( contents, "history\"></span>\n%s*(%d+)\n%s*</span>" ) )
@@ -23,7 +22,7 @@ print( "2: Pass" )
 		end )
 	end )
 end
-
+UpdateCheck( )
 
 
 

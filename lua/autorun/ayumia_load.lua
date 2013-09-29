@@ -13,7 +13,6 @@ end
 
 if SERVER then 
 	-- Serverside Includes >
-	include( 'core/server/VersionMgr.lua' )
 	include( 'rpg/server/init.lua' )
 	include( 'rpg/server/db.lua' )
 end
@@ -28,7 +27,7 @@ end
 
 if SERVER then 
 	-- Serverside Init Calls >
-	UpdateCheck( )
+	--UpdateCheck( )
 	ServerInit( )
 end
 
