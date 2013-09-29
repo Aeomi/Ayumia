@@ -42,7 +42,7 @@ net.Receive( "ClientName", function( len, ply )
 end )
 
 function PrepareDirectory( path )
-	MsgC( Color( 75, 100, 225), "[ Adb ] Directory '"..path.."' does not exist, creating it for you...\n" )
+	MsgC( Color( 75, 100, 225 ), "[ Adb ] Directory '"..path.."' does not exist, creating it for you...\n" )
 	file.CreateDir( path )
 	file.Write( path.."/direxist.txt" )
 end
