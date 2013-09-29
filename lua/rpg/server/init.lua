@@ -15,7 +15,7 @@ net.Receive( "ClientName", function( len, ply )
 		local Blu = Color( 10, 150, 200 )
 		local Wht = Color( 255, 255, 255 )
 		MsgC( Color( 75, 100, 225 ), "[ Adb ] Potentially malicious name, dropping.\n" )
-		ply:SendLua( "chat.AddText( Blu, '[ Adb ]', Wht, 'Name denied by Server, do not use invalid characters.' )"  )
+		ply:SendLua( "chat.AddText( Blu, '[ Adb ]', Wht, ' Name denied by Server, do not use invalid characters.' )"  )
 	end
 	if CurSteamID == "BOT" then
 		MsgC( Color( 75, 100, 225 ), "[ Adb ] That's a bot! Ignoring.\n" )
@@ -30,13 +30,13 @@ net.Receive( "ClientName", function( len, ply )
 			--		 Umi is the term for charactar/avatar/( etc )
 			--		 Aumi, AUmi, Umi... Names are up for discussion.
 			--		 Your Umi ( Youme ) is your virtual self.
-			MsgC( Color( 75, 100, 225 ), "[ Adb ] ".. ply:Nick( ) .."is undergoing Umi creation" )
+			MsgC( Color( 75, 100, 225 ), "[ Adb ] ".. ply:Nick( ) .." is undergoing Umi creation" )
 			Adb[ NumID ].name = NewName
 			WriteTableToID( NumID )
 		else
 			-- TODO: Pre-existing character, name change.
 			-- 		 Variable for old name plis x3
-			MsgC( Color( 75, 100, 225 ), "[ Adb ] ".. Adb[ NumID ].name .."has changed their name.\n" )
+			MsgC( Color( 75, 100, 225 ), "[ Adb ] ".. Adb[ NumID ].name .." has changed their name.\n" )
 		end
 	end
 end )
@@ -106,7 +106,7 @@ hook.Add( "PlayerInitialSpawn", "IDHandling", function( ply )
 				else
 					local Blu = Color( 10, 150, 200 )
 					local Wht = Color( 255, 255, 255 )
-					ply:SendLua( "chat.AddText( Blu, '[ Adb ]', Wht, 'Thank you for logging in, '.. Adb[ ID ].name ..'.' )"  )
+					ply:SendLua( "chat.AddText( Blu, '[ Adb ]', Wht, ' Thank you for logging in, '.. Adb[ ID ].name ..'.' )"  )
 				end
 			end
 		end
