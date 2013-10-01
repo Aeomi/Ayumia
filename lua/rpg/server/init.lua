@@ -7,36 +7,26 @@ net.Receive( "ClientName", function( len, ply )
 	print( "[ Adb ] Received new name from ".. ply:Nick( ) )
 	local CurSteamID = ply:SteamID( )
 	local NewName = net.ReadString( )
-	if not NewName:match( "^[%a%d ]+$" ) then
+	if not NewName:match( "^[%a ]+$" ) then
 	-- TODO: Remove Mallows Personality from the prints.
 	--		 Use MsgC instead of print.
 	--		 Use chat.AddText instead of ChatPrint.
 	--		 Use 'not' or '!' instead of == nil
-		local Blu = Color( 10, 150, 200 )
-		local Wht = Color( 255, 255, 255 )
-		MsgC( Color( 75, 100, 225 ), "[ Adb ] Potentially malicious name, dropping.\n" )
-		ply:SendLua( "chat.AddText( Blu, '[ Adb ]', Wht, 'Name denied by Server, do not use invalid characters.' )"  )
-	end
-	if CurSteamID == "BOT" then
-		MsgC( Color( 75, 100, 225 ), "[ Adb ] That's a bot! Ignoring.\n" )
 	else
-		local NumID = tonumber( string.sub( CurSteamID, 11, 18 ) )
-		if Adb[ NumID ] == nil then
+		local ID = tonumber( string.sub( CurSteamID, 11, 18 ) )
+		if Adb[ ID ] == nil then
 			MsgC( Color( 75, 100, 225 ), "[ Adb ] Unexpected error occured, aborting!\n" )
 			return
 		end
-		if Adb[ NumID ].name == false then
+		if Adb[ ID ].name == false then
 			-- TODO: New character stuffs.
-			--		 Umi is the term for charactar/avatar/( etc )
-			--		 Aumi, AUmi, Umi... Names are up for discussion.
-			--		 Your Umi ( Youme ) is your virtual self.
-			MsgC( Color( 75, 100, 225 ), "[ Adb ] ".. ply:Nick( ) .."is undergoing Umi creation" )
-			Adb[ NumID ].name = NewName
-			WriteTableToID( NumID )
+			MsgC( Color( 75, 100, 225 ), "[ Adb ] ".. ply:Nick( ) .." has set up their Username\n" )
+			Adb[ ID ].name = NewName
+			WriteTableToID( ID )
 		else
 			-- TODO: Pre-existing character, name change.
 			-- 		 Variable for old name plis x3
-			MsgC( Color( 75, 100, 225 ), "[ Adb ] ".. Adb[ NumID ].name .."has changed their name.\n" )
+			MsgC( Color( 75, 100, 225 ), "[ Adb ] ".. ply:Nick( ) .."has changed their Username to ".. Adb[ ID ].name ..".\n" )
 		end
 	end
 end )
@@ -106,7 +96,7 @@ hook.Add( "PlayerInitialSpawn", "IDHandling", function( ply )
 				else
 					local Blu = Color( 10, 150, 200 )
 					local Wht = Color( 255, 255, 255 )
-					ply:SendLua( "chat.AddText( Blu, '[ Adb ]', Wht, 'Thank you for logging in, '.. Adb[ ID ].name ..'.' )"  )
+					ply:SendLua( "chat.AddText( Blu, '[ Adb ]', Wht, ' Thank you for logging in, '.. Adb[ ID ].name ..'.' )"  )
 				end
 			end
 		end
