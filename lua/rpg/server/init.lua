@@ -8,10 +8,7 @@ net.Receive( "ClientName", function( len, ply )
 	local CurSteamID = ply:SteamID( )
 	local NewName = net.ReadString( )
 	if not NewName:match( "^[%a ]+$" ) then
-	-- TODO: Remove Mallows Personality from the prints.
-	--		 Use MsgC instead of print.
-	--		 Use chat.AddText instead of ChatPrint.
-	--		 Use 'not' or '!' instead of == nil
+	-- Error, Name did not pass anti-malicicious test.
 	else
 		local ID = tonumber( string.sub( CurSteamID, 11, 18 ) )
 		if Adb[ ID ] == nil then
@@ -26,7 +23,7 @@ net.Receive( "ClientName", function( len, ply )
 		else
 			-- TODO: Pre-existing character, name change.
 			-- 		 Variable for old name plis x3
-			MsgC( Color( 75, 100, 225 ), "[ Adb ] ".. ply:Nick( ) .."has changed their Username to ".. Adb[ ID ].name ..".\n" )
+			MsgC( Color( 75, 100, 225 ), "[ Adb ] ".. ply:Nick( ) .." has changed their Username to ".. Adb[ ID ].name ..".\n" )
 		end
 	end
 end )
@@ -89,14 +86,11 @@ hook.Add( "PlayerInitialSpawn", "IDHandling", function( ply )
 					--       to "ayumia/db/id/<idhere>-old.txt"
 					--       so the admin or a version update tool can fix it.
 				end
-				
 				if Adb[ ID ].name == false then
 					-- New character needs creating before anything else.
-					timer.Simple( 4, function( ) ply:ConCommand( "ayu_rpg_requestname" ) end )
+					timer.Simple( 4, function( ) ply:ConCommand( "Ayu_Rpg_Derma_NameMenu" ) end )
 				else
-					local Blu = Color( 10, 150, 200 )
-					local Wht = Color( 255, 255, 255 )
-					ply:SendLua( "chat.AddText( Blu, '[ Adb ]', Wht, ' Thank you for logging in, '.. Adb[ ID ].name ..'.' )"  )
+					ply:SendLua( "chat.AddText( Color( 75, 75, 200 ), '[ Adb ]', Color( 255, 255, 255 ), ' Thank you for logging in, '.. Adb[ ID ].name ..'.' )"  )
 				end
 			end
 		end

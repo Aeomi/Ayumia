@@ -30,33 +30,12 @@ function CreateFonts( )
         weight =        250;
         antialias =     true;
         outline =       true;
-		shadow = 		true -- Test this
+		shadow = 		true 
     } )
 end 
 CreateFonts( )
 
 concommand.Add( "Ayu_Rpg_Derma_NameMenu", function( )
-
-	/*----------|
-	|   Funct   |
-	|----------*/	
-	
-	NameField = "x"
-	local function SendNameToSv( )
-		if NameField:GetValue( ):match( "^[%a ]+$" ) != nil then
-			Msg( NameField:GetValue( ) .."\n" ) 
-			net.Start( "ClientName" )
-			net.WriteString( NameField:GetValue( ) )
-			net.SendToServer( )
-			DNameText = "Your name is being changed..."
-			DNameTextColorBool = true
-		else
-			DNameTextColorBool = false
-			DNameText = ( "The Name '".. NameField:GetValue( ) .."' contains illegal characters \nAllowed characters range from A - Z" )
-		end
-	end
-	
-	
 	
 	/*----------|
 	|   Derma   |
@@ -73,10 +52,11 @@ concommand.Add( "Ayu_Rpg_Derma_NameMenu", function( )
 	MainMenu:ShowCloseButton( false )
 	MainMenu:MakePopup( )
 	MainMenu.Paint = function( ) 
-		DNameText = ""
 		draw.RoundedBox( 8, 0, 0, MainMenu:GetWide( ), MainMenu:GetTall( ), Color( 75, 75, 75, 250 ) )
 		draw.DrawText( "Enter your Name:", "AyuSBFont", 50, 74, Color( 75, 75, 200, 255 ), TEXT_ALIGN_CENTER )
 		draw.DrawText( "Name Selection Screen", "AyuSBFont", 60, 5, Color( 255, 255, 255, 255 ), TEXT_ALIGN_CENTER )
+		DNameText = ""
+		DNameTextColorBool = true
 		if DNameTextColorBool == false then 
 			DNameTextColor = Color( 200, 50, 75 ) 
 		else 
@@ -85,6 +65,47 @@ concommand.Add( "Ayu_Rpg_Derma_NameMenu", function( )
 		draw.DrawText( DNameText, "AyuLBFont", 100, 35, DNameTextColor, TEXT_ALIGN_CENTER )
 	end
 	//-------------------//
+	
+	
+	//-- Text Field --//
+	NameField = vgui.Create( "DTextEntry", MainMenu )
+	NameField:SetPos( 95, 75 )
+	NameField:SetTall( 14 )
+	NameField:SetWide( 110 )
+	NameField:SetEnterAllowed( true )
+	NameField.OnEnter = function( )
+		if NameField:GetValue( ):match( "^[%a ]+$" ) != nil then
+			Msg( NameField:GetValue( ) .."\n" ) 
+			net.Start( "ClientName" )
+			net.WriteString( NameField:GetValue( ) )
+			net.SendToServer( )
+			DNameText = "Your name is being changed..."
+			DNameTextColorBool = true
+		else
+			DNameTextColorBool = false
+			DNameText = ( "The Name '".. NameField:GetValue( ) .."' contains illegal characters \nAllowed characters range from A - Z" )
+		end
+	end
+	//----------------//
+	
+	
+	//-- Send TextField Button --//
+	local BtnSubmit = vgui.Create( "DButton", MainMenu )
+	BtnSubmit:SetPos( 210, 74 )
+	BtnSubmit:SetSize( 50, 16 )
+	BtnSubmit:SetFont( "AyuButtonFont" )
+	BtnSubmit:SetText( "Send" )
+	BtnSubmit.Paint = function( )
+		draw.RoundedBox( 2, 0, 0, BtnSubmit:GetWide( ), BtnSubmit:GetTall( ), Color( 25, 25, 25, 255 ) )
+	end
+	BtnSubmit.DoClick = function( )
+		BtnSubmit:SetText( "Sending" )
+		
+		timer.Simple( 0.5, function( )
+			MainMenu:SetVisible( false )
+		end )
+	end
+	//---------------------------//
 	
 	
 	//-- Close Button--//
@@ -112,35 +133,6 @@ concommand.Add( "Ayu_Rpg_Derma_NameMenu", function( )
 		timer.Simple( 1, function( ) MainMenu:SetVisible( false ) end )
 	end
 	//-----------------//
-	
-	
-	//-- Send TextField Button --//
-	local BtnSubmit = vgui.Create( "DButton", MainMenu )
-	BtnSubmit:SetPos( 210, 74 )
-	BtnSubmit:SetSize( 50, 16 )
-	BtnSubmit:SetFont( "AyuButtonFont" )
-	BtnSubmit:SetText( "Send" )
-	BtnSubmit.Paint = function( )
-		draw.RoundedBox( 2, 0, 0, BtnSubmit:GetWide( ), BtnSubmit:GetTall( ), Color( 25, 25, 25, 255 ) )
-	end
-	BtnSubmit.DoClick = function( )
-		BtnSubmit:SetText( "Sending" )
-		timer.Simple( 0.5, function( )
-			SendNameToSv( )
-			MainMenu:SetVisible( false )
-		end )
-	end
-	//---------------------------//
-	
-	
-	//-- Text Field --//
-	NameField = vgui.Create( "DTextEntry", MainMenu )
-	NameField:SetPos( 95, 75 )
-	NameField:SetTall( 14 )
-	NameField:SetWide( 110 )
-	NameField:SetEnterAllowed( true )
-	NameField.OnEnter = function( ) SendNameToSv( ) end
-	//----------------//
 	
 	
 MainMenu:SetVisible( true ) -- Open Name Menu
