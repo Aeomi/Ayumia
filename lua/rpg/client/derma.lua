@@ -74,17 +74,22 @@ concommand.Add( "Ayu_Rpg_Derma_NameMenu", function( )
 	NameField:SetWide( 110 )
 	NameField:SetEnterAllowed( true )
 	NameField.OnEnter = function( )
-		if NameField:GetValue( ):match( "^[%a ]+$" ) != nil then
+		if SendNewName( NameField:GetValue( ) ) then
+			DNameText = "Your name is being changed..."
+			DNameTestColorBool = true
+		else
+			DNameTextColorBool = false
+			DNameText = "The Name '".. NameField:GetValue( ) .."' contains illegal characters \nAllowed characters range from A - Z"
+		end
+		--[[if NameField:GetValue( ):match( "^[%a ]+$" ) != nil then
 			Msg( NameField:GetValue( ) .."\n" ) 
-			net.Start( "ClientName" )
-			net.WriteString( NameField:GetValue( ) )
-			net.SendToServer( )
+			SendNewName( NameField:GetValue( ) )
 			DNameText = "Your name is being changed..."
 			DNameTextColorBool = true
 		else
 			DNameTextColorBool = false
 			DNameText = ( "The Name '".. NameField:GetValue( ) .."' contains illegal characters \nAllowed characters range from A - Z" )
-		end
+		end ]]
 	end
 	//----------------//
 	
@@ -99,11 +104,14 @@ concommand.Add( "Ayu_Rpg_Derma_NameMenu", function( )
 		draw.RoundedBox( 2, 0, 0, BtnSubmit:GetWide( ), BtnSubmit:GetTall( ), Color( 25, 25, 25, 255 ) )
 	end
 	BtnSubmit.DoClick = function( )
-		BtnSubmit:SetText( "Sending" )
-		
-		timer.Simple( 0.5, function( )
-			MainMenu:SetVisible( false )
-		end )
+		if SendNewName( NameField:GetValue( ) ) then
+			BtnSubmit:SetText( "Sending" )
+			timer.Simple( 0.5, function( )
+				MainMenu:SetVisible( false )
+			end )
+		else
+			NameField:SetValue( "Invalidito!" )
+		end
 	end
 	//---------------------------//
 	
