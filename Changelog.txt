@@ -1,0 +1,34 @@
+Document changes made to any file:
+
+
+
+
+r55
+-- Bug: Misc. fixes
+-- Added: Version Managing ( v0.1a )
+-- Added: [ Core ] Component
+-- Update: Ayumia_load.lua
+-- Update: [ Rpg ] Component
+-- Improv: sv/cl Messages
+
+
+
+
+r56
+-- Bug: Fixed Bug that stopped Net-Lib from sending new Name to Server
+-- Bug: Fixed Bug that stopped Net-Lib from writing correct name to Server
+-- Fixed: Hook problems
+
+
+
+
+r60 Derma update! 
+-- Fix: Made 'SendNameToServer' a function local to the name calling concommand 
+-- Fix: Many misc. fixes
+-- Added: Derma painting
+-- Update: Perf. imporvements
+-- Update: All derma items
+-- Will list rest of updates in this revision later
+
+
+
